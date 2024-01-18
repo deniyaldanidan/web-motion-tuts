@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,14 +18,38 @@
 			background-color: #F6E9FE;
 		}
 
-		/* Air */
+		#svg1 {
+			width: 200px;
+			height: auto;
+			overflow: visible;
+		}
 	</style>
 </head>
+
 <body>
 	<div class="container">
-		<!-- Air -->
+		<svg width="262.48392mm" height="180.58331mm" viewBox="0 0 262.48392 180.58331" version="1.1" id="svg1"
+			xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+			<defs id="defs1" />
+			<g id="layer1" transform="translate(45.036569,-41.143245)">
+				<path id="path2-2" fill-opacity="0" fill="none" fill-rule="evenodd" stroke="#000000" stroke-width="20"
+					stroke-opacity="1" stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="round"
+					d="m -39.744919,131.43492 v 42.99996 c 0,23.26798 18.732038,42.00002 42.0000173,42.00002 23.2679807,0 42.0000207,-18.73204 42.0000207,-42.00002 v -42.99996 m 167.900581,-4e-5 V 88.434917 c 0,-23.26798 -18.73204,-42.00002 -42.00002,-42.00002 -23.26798,0 -42.00002,18.73204 -42.00002,42.00002 V 131.43488 M 86.162917,46.434897 c 23.268003,0 42.000003,18.732 42.000003,42.000003 v 86 c 0,23.268 -18.732,42 -42.000002,42 -23.268,0 -42,-18.732 -42,-42 v -86 c 0,-23.268003 18.732,-42.000003 41.999999,-42.000003 z" />
+			</g>
+		</svg>
 	</div>
 
 	<!-- Air -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+	<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin3.min.js"></script>
+
+	<script>
+		const btn = document.getElementById("click-me")
+		const tl = gsap.timeline({ repeat: Infinity, yoyo: true, repeatDelay: 0.25 });
+
+		tl.fromTo("#path2-2", { scale: 0.75, drawSVG: "100% 100%" }, { drawSVG: "0% 100%", duration: 1 });
+		tl.fromTo("#path2-2", { stroke: "#000", transformOrigin: "50% 50%" }, { scale: 1, stroke: "#a44", rotation: 360, duration: 1 })
+	</script>
 </body>
+
 </html>

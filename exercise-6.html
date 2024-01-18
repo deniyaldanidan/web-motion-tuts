@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +12,15 @@
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap"
+		rel="stylesheet">
 
 	<style>
 		/* This design is inspired by Zed Dash's project */
 		/* https://codepen.io/z-/pen/OBPJKK */
 		:root {
-			--def-transition-duration: .2s;
+			--def-transition-duration: .25s;
+			--sec-transition-duration: .05s;
 
 			--color-cloudy: #5F7C9C;
 			--color-cloudy-shade: #56708c;
@@ -105,7 +108,7 @@
 		}
 
 		.cloudy {
-			background: var(--color-cloudy) url(/images/cloudy@c.png);
+			background: var(--color-cloudy) url(/images/cloudy.jpg);
 		}
 
 		.cloudy .readings li {
@@ -113,7 +116,7 @@
 		}
 
 		.sunny {
-			background: var(--color-sunny) url(images/sunny@c.png);
+			background: var(--color-sunny) url(images/sunny.jpg);
 		}
 
 		.sunny .readings li {
@@ -121,7 +124,7 @@
 		}
 
 		.rainy {
-			background: var(--color-rainy) url(images/rainy@c.png);
+			background: var(--color-rainy) url(images/rainy.jpg);
 		}
 
 		.rainy .readings li {
@@ -129,7 +132,7 @@
 		}
 
 		.thunderstorms {
-			background: var(--color-thunderstorms) url(images/thunderstorms@c.png);
+			background: var(--color-thunderstorms) url(images/thunderstorms.jpg);
 		}
 
 		.thunderstorms .readings li {
@@ -150,6 +153,7 @@
 			cursor: pointer;
 			position: relative;
 			overflow: hidden;
+			transition: all var(--def-transition-duration) ease-in-out;
 		}
 
 		.date li:nth-child(1) {
@@ -159,6 +163,7 @@
 
 		.date li:nth-child(2) {
 			font-size: 0.8125rem;
+			transition: color var(--def-transition-duration) ease-in-out;
 		}
 
 		.temp {
@@ -166,6 +171,8 @@
 			flex-direction: column;
 			gap: 1.5rem;
 			opacity: 0;
+			transform: translateY(-20px);
+			transition: all var(--sec-transition-duration) ease-in-out 0ms;
 		}
 
 		.temp p {
@@ -199,6 +206,8 @@
 			gap: 1rem;
 			width: 28rem;
 			opacity: 0;
+			transform: translateY(30px);
+			transition: all var(--sec-transition-duration) ease-in-out;
 		}
 
 		.readings li {
@@ -225,6 +234,8 @@
 		.bottom-temp {
 			position: absolute;
 			bottom: 2rem;
+			opacity: 1;
+			transition: all var(--def-transition-duration) ease-in-out var(--def-transition-duration);
 		}
 
 		.opened {
@@ -237,22 +248,29 @@
 			color: rgba(255, 255, 255, 0.48);
 		}
 
-		.opened .temp,
+		.opened .temp {
+			opacity: 1;
+			transform: translateY(0);
+			transition: all var(--def-transition-duration) ease-in-out var(--def-transition-duration);
+		}
+
 		.opened .readings {
 			opacity: 1;
+			transform: translate(0);
+			transition: all var(--def-transition-duration) ease-in-out var(--def-transition-duration);
 		}
 
 		.opened .bottom-temp {
 			opacity: 0;
+			transform: translatey(100px);
+			transition: all var(--sec-transition-duration) ease-in-out 0ms;
 		}
 
 
 		/* Air */
-		/* In the video I'm using the following icons and imagery: */
-		/* - https://elements.envato.com/photo-realistic-weather-icon-set-K7MGJ3 */
-		/* - https://elements.envato.com/weather-icon-pack-3UHW3R3 */
 	</style>
 </head>
+
 <body>
 	<div id="hero">
 		<header id="main-header">
@@ -462,4 +480,5 @@
 		})
 	</script>
 </body>
+
 </html>

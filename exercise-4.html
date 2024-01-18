@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,38 @@
 	<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" rel="stylesheet">
 
 	<style>
+		@keyframes dropdownOpen {
+			0% {
+				opacity: 0;
+				transform: translateY(-25px);
+			}
+
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes dropdownClose {
+			0% {
+				opacity: 1;
+				transform: translateY(0);
+				display: block;
+			}
+
+			/*
+			50% {
+				opacity: 0;
+			}
+			*/
+
+			100% {
+				opacity: 0;
+				transform: translateY(-25px);
+				display: none;
+			}
+		}
+
 		:root {
 			--def-transition-duration: .2s;
 		}
@@ -55,6 +88,7 @@
 			color: #A1A2A3;
 			display: inline-block;
 			padding: 1.5rem 0;
+			transition: color var(--def-transition-duration) ease-in-out;
 		}
 
 		nav ul a:hover {
@@ -73,10 +107,12 @@
 			content: url('icons/icon-arrow-down.svg');
 			opacity: .6;
 			height: 25px;
+			transition: all var(--def-transition-duration) ease-in-out;
 		}
 
 		.has-submenu:hover ul {
 			display: block;
+			animation: dropdownOpen var(--def-transition-duration) ease-in-out both;
 		}
 
 		.has-submenu ul {
@@ -87,6 +123,7 @@
 			border-radius: .5rem;
 			padding: .5rem;
 			display: none;
+			animation: dropdownClose var(--def-transition-duration) 150ms ease-in-out both;
 		}
 
 		.has-submenu ul a {
@@ -96,12 +133,14 @@
 			padding: 1rem;
 			min-width: 15rem;
 			border-radius: .5rem;
+			transition: all var(--def-transition-duration) ease-in-out;
 		}
 
 		.has-submenu ul a::after {
 			content: url(icons/icon-arrow-right.svg);
 			height: 17px;
 			opacity: 0;
+			transition: all var(--def-transition-duration) ease-in-out;
 		}
 
 		.has-submenu ul a:hover {
@@ -115,25 +154,33 @@
 
 		.has-submenu:hover::after {
 			opacity: 1;
+			transform: rotate(180deg);
 		}
 
-		.has-submenu:hover > a {
+		.has-submenu:hover>a {
 			color: #E8E8E8;
 		}
 
 		button {
 			appearance: none;
-			border: 1px solid #9E70EB;
+			border: 2px solid #9E70EB;
 			color: #9E70EB;
 			background-color: transparent;
 			border-radius: 10rem;
 			padding: .75rem 1.5rem;
 			cursor: pointer;
+			font-weight: 700;
+			transition: all var(--def-transition-duration) ease-in-out 50ms;
 		}
 
-		/* Air */
+		button:hover {
+			border-color: #9E70EB;
+			color: #E8E8E8;
+			background-color: #9E70EB;
+		}
 	</style>
 </head>
+
 <body>
 	<div id="hero">
 		<header id="main-header">
@@ -163,4 +210,5 @@
 		</header>
 	</div>
 </body>
+
 </html>

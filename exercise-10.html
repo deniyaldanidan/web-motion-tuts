@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,8 @@
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap"
+		rel="stylesheet">
 
 	<style>
 		:root {
@@ -45,6 +47,7 @@
 		img {
 			display: block;
 			max-width: 100%;
+			width: 100%;
 			height: auto;
 		}
 
@@ -56,6 +59,7 @@
 			grid-template-columns: 25rem 1fr;
 			align-items: center;
 			min-height: 50rem;
+			width: 70vw;
 		}
 
 		.well {
@@ -96,7 +100,7 @@
 			width: 100%;
 		}
 
-		form > div {
+		form>div {
 			position: relative;
 			margin-bottom: 2rem;
 		}
@@ -123,8 +127,8 @@
 			border-color: var(--gray-base);
 		}
 
-		input:focus + label,
-		input:valid + label {
+		input:focus+label,
+		input:valid+label {
 			transform: translateY(-1.25rem);
 			font-size: .8125rem;
 			color: var(--gray-base);
@@ -166,9 +170,62 @@
 			transform: translate3d(3px, 3px, 0);
 		}
 
-		/* Air */
+		.button--loader {
+			display: none;
+		}
+
+		.button--loader div {
+			display: block;
+			width: .75rem;
+			height: .75rem;
+			border-radius: 50%;
+			background-color: var(--accent-tint-90);
+		}
+
+		.button.loading .button--text {
+			display: none;
+		}
+
+		.button.loading .button--loader {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			column-gap: 6px;
+		}
+
+		@keyframes go-up {
+			0% {
+				transform: translateY(0px);
+			}
+
+			100% {
+				transform: translateY(10px);
+			}
+		}
+
+		.button.loading .button--loader div {
+			animation-name: go-up;
+			animation-duration: .25s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+		}
+
+		.button.loading .button--loader div:nth-child(2) {
+			animation-delay: .125s;
+		}
+
+		.button.loading .button--loader div:nth-child(3) {
+			animation-delay: .25s;
+		}
+
+		.button.success {
+			background-color: var(--contextual-success-base);
+			color: var(--accent-tint-90);
+		}
 	</style>
 </head>
+
 <body>
 	<div class="container">
 		<div class="well">
@@ -192,7 +249,7 @@
 
 				<a href="#" id="forgot-pwd">Forgot Password?</a>
 
-				<button class="button" id="btn-submit">
+				<button class="button" id="btn-submit" type="button">
 					<span class="button--text">Log In</span>
 
 					<!-- Air -->
@@ -208,16 +265,25 @@
 			<p>Don't have an account? <a href="#">Sign Up</a>.</p>
 		</div>
 
-		<img src="illustrations/captain@c.svg" alt="Captain">
+		<img src="illustrations/loginPic.svg" alt="Captain">
 	</div>
 
 	<script>
-		const submitButton = document.querySelector('#btn-submit')
+		const submitButton = document.getElementById('btn-submit')
 		const submitButtonText = document.querySelector('#btn-submit .button--text')
 
-		submitButton.addEventListener('click', (e) => {
-			// Air
-		})
+		submitButton.onclick = function (e) {
+			e.preventDefault();
+			this.classList.add("loading");
+
+			setTimeout(() => {
+				this.classList.remove("loading");
+				this.classList.add("success");
+
+				submitButtonText.textContent = "Success";
+			}, 5000)
+		}
 	</script>
 </body>
+
 </html>

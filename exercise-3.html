@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,20 +41,33 @@
 		nav ul a {
 			text-decoration: none;
 			color: #151618;
+			transition: color 250ms ease-in-out;
+		}
+
+		nav ul a:hover {
+			color: #6E32EF;
 		}
 
 		.btn {
-			color: white;
-			background-color: #6E32EF;
+			background-color: white;
+			color: #151618;
 			display: inline-block;
 			padding: .75rem 1.5rem;
 			border-radius: .5rem;
-			border: 1px solid #6E32EF;
+			font-weight: 700;
+			border: 1px solid #151618;
+			transition: transform 100ms ease-in-out 325ms, background-color 350ms ease-in-out 75ms, color 350ms ease-in-out 75ms, border-color 350ms ease-in-out 75ms;
 		}
 
-		/* Air */
+		.btn:hover {
+			transform: scale(0.95);
+			background-color: #6E32EF;
+			color: white;
+			border-color: #6E32EF;
+		}
 	</style>
 </head>
+
 <body>
 	<header>
 		<a href="/"><img src="images/logo-l4.svg" alt="Logo"></a>
@@ -70,4 +84,5 @@
 		</nav>
 	</header>
 </body>
+
 </html>
